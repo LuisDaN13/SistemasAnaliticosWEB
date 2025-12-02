@@ -1,5 +1,466 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<style>
+    /* Estilos para el contenido principal */
+    .hero-section {
+        position: relative;
+        padding: 5rem 0;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+    }
+
+        /* Pseudo-elemento para el fondo */
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/img/fondo-SASA.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.6);
+            transform: scale(1);
+            transition: transform 5s ease;
+            z-index: -1;
+        }
+
+        .hero-section:hover::before {
+            transform: scale(1.1);
+        }
+
+    /* Hero titles */
+    .hero-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .service-section {
+        padding: 5rem 0;
+    }
+
+        .service-section:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+    .service-section2 {
+        padding-top: 5rem;
+    }
+
+        .service-section2:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+    .section-title {
+        font-weight: 400;
+        margin-bottom: 3rem;
+        color: var(--dark-color);
+    }
+
+    .service-image {
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        width: 90%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .accordion-button {
+        font-weight: 600;
+        padding: 1.25rem 1.5rem;
+        background-color: white;
+        border: 1px solid #dee2e6;
+        border-radius: 0.375rem !important;
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #d90100;
+            color: white;
+            border-color: #d90100;
+        }
+
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(217, 1, 0, 0.25);
+        }
+
+    .accordion-body {
+        padding: 1.5rem;
+        background-color: white;
+        border: 1px solid #dee2e6;
+        border-top: none;
+        border-radius: 0 0 0.375rem 0.375rem;
+    }
+
+    .leadership-badge {
+        background-color: #d90100;
+        color: white;
+        padding: 0.25rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .icon-list {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .icon-list-item {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+    }
+
+        .icon-list-item:last-child {
+            border-bottom: none;
+        }
+
+    .icon-list-icon {
+        color: #d90100;
+        margin-right: 1rem;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .subtitle {
+        color: #4e4e4e;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        line-height: 1.4;
+    }
+
+    /* Estilos responsivos */
+    @@media (max-width: 768px) {
+        .hero-section
+
+    {
+        padding: 3rem 0;
+        min-height: 300px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .service-section, .service-section2 {
+        padding: 3rem 0;
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .service-image {
+        width: 100%;
+        margin-bottom: 2rem;
+        max-width: 500px;
+    }
+
+    .leadership-badge {
+        display: block;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+    }
+
+    /* Centrar texto en móviles */
+    .text-center-mobile {
+        text-align: center !important;
+    }
+
+    .accordion-button {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .accordion-body {
+        padding: 1rem;
+    }
+
+    .icon-list-item {
+        padding: 0.5rem 0;
+    }
+
+        .icon-list-item span {
+            text-align: left;
+        }
+
+    /* Asegurar que las imágenes no se desborden */
+    .container img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    }
+
+    @@media (max-width: 576px) {
+        .hero-title
+
+    {
+        font-size: 1.75rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .service-image {
+        width: 100%;
+    }
+
+    }
+</style>
+
+    <main>
+        <!-- Sección Hero -->
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title text-center-mobile">Nuestros Servicios</h1>
+            </div>
+        </section>
+
+        <!-- Sección 1: Plataforma de Soluciones -->
+        <section class="service-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src='/img/camisa-SASA.jpg'
+                             alt="Camisa SASA Partners"
+                             class="service-image">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="leadership-badge text-center-mobile">LÍDER DE LA INDUSTRIA</div>
+                        <h3 class="subtitle text-center-mobile">PLATAFORMA DE SOLUCIONES BANCARIAS DE AUTOSERVICIO</h3>
+
+                        <div class="accordion" id="accordionSolutions">
+                            <!-- Item 1 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        La red de cajeros automáticos independiente más grande
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionSolutions">
+                                    <div class="accordion-body text-center-mobile">
+                                        <p>Contamos con la red de cajeros automáticos independiente más grande, lo que nos permite ofrecer acceso eficiente, seguro y conveniente al efectivo en una amplia variedad de ubicaciones. Esta infraestructura robusta garantiza disponibilidad constante para los usuarios, mientras que las instituciones financieras pueden extender su presencia sin necesidad de inversiones significativas en infraestructura propia.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Procesamiento de transacciones
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionSolutions">
+                                    <div class="accordion-body text-center-mobile">
+                                        <p>Ofrecemos soluciones avanzadas para el procesamiento de transacciones, asegurando que cada operación se realice con rapidez, precisión y máxima seguridad. Nuestra tecnología permite manejar grandes volúmenes de transacciones en tiempo real, cumpliendo con los estándares internacionales y adaptándose a las necesidades específicas de cada cliente.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        Diseño de software y licencias
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionSolutions">
+                                    <div class="accordion-body text-center-mobile">
+                                        <p>Nos especializamos en el diseño de software personalizado para el sector financiero, desarrollando soluciones innovadoras que optimizan los procesos operativos y mejoran la experiencia del usuario. Además, ofrecemos licencias flexibles que permiten a nuestros clientes implementar nuestras tecnologías de forma escalable y conforme a sus requerimientos estratégicos.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                        Capacidades completas de externalización
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionSolutions">
+                                    <div class="accordion-body text-center-mobile">
+                                        <p>Brindamos capacidades completas de externalización para que las empresas puedan delegar funciones críticas como la gestión de cajeros automáticos, soporte técnico, mantenimiento y monitoreo. Esta oferta integral permite a nuestros clientes enfocarse en su negocio principal mientras nosotros aseguramos la eficiencia operativa de sus sistemas tecnológicos.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 5 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                                        Amplios servicios de hardware y software
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionSolutions">
+                                    <div class="accordion-body text-center-mobile">
+                                        <p>Disponemos de una gama completa de servicios relacionados con hardware y software, que incluyen desde la instalación y mantenimiento de dispositivos hasta la actualización de sistemas operativos y plataformas tecnológicas. Nuestro enfoque integral garantiza un funcionamiento armonizado y confiable de toda la infraestructura tecnológica.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 6 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                                        Diseño y producción de dispositivos
+                                    </button>
+                                </h2>
+                                <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionSolutions">
+                                    <div class="accordion-body text-center-mobile">
+                                        <p>Nos encargamos del diseño y la producción de dispositivos especializados para el sector financiero, tales como terminales de autoservicio, kioscos inteligentes y componentes personalizados. Esta capacidad nos permite ofrecer soluciones tecnológicas adaptadas a los entornos más exigentes, asegurando calidad, durabilidad y rendimiento óptimo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Mantenimiento de Red -->
+        <section class="service-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0">
+                        <img src='~/img/tecnicos.jpg'
+                             alt="Mantenimiento de Red de Cajeros"
+                             class="service-image">
+                    </div>
+                    <div class="col-lg-8 order-lg-1">
+                        <h3 class="subtitle text-center-mobile">MANTENGA SU RED DE CAJEROS AUTOMÁTICOS EN LÍNEA Y CON SERVICIO</h3>
+
+                        <div class="accordion" id="accordionMaintenance">
+                            <!-- Item 1 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMaintOne" aria-expanded="true">
+                                        Seguimiento y Gestión
+                                    </button>
+                                </h2>
+                                <div id="collapseMaintOne" class="accordion-collapse collapse show" data-bs-parent="#accordionMaintenance">
+                                    <div class="accordion-body text-center-mobile">
+                                        <ul class="mb-0">
+                                            <li>Cobertura de Domingo a Domingo de 7:00 a.m. a 7:00 p.m.</li>
+                                            <li>Monitoreo, resolución remota y punto de contacto único</li>
+                                            <li>Reducción de los despachos</li>
+                                            <li>Reducción de los costos operativos</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMaintTwo">
+                                        Gestión de Escalamientos
+                                    </button>
+                                </h2>
+                                <div id="collapseMaintTwo" class="accordion-collapse collapse" data-bs-parent="#accordionMaintenance">
+                                    <div class="accordion-body text-center-mobile">
+                                        <ul class="mb-0">
+                                            <li>Personal de servicio especializado</li>
+                                            <li>Continuidad del negocio de las operaciones a través de centros redundantes e infraestructura</li>
+                                            <li>Gastos operativos previsibles</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed text-center-mobile" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMaintThree">
+                                        Analítica y Conocimiento del Negocio
+                                    </button>
+                                </h2>
+                                <div id="collapseMaintThree" class="accordion-collapse collapse" data-bs-parent="#accordionMaintenance">
+                                    <div class="accordion-body text-center-mobile">
+                                        <ul class="mb-0">
+                                            <li>Seguimiento de inventario para reducir futuras visitas</li>
+                                            <li>Información valiosa a través del análisis de datos</li>
+                                            <li>Decisiones basadas en datos</li>
+                                            <li>Mejora del Rendimiento empresarial</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Servicios Adicionales -->
+        <section class="service-section2">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mb-4 mb-lg-0">
+                        <img src='~/img/fondo-Taller2.jpg'
+                             alt="Servicios Adicionales"
+                             class="service-image">
+                    </div>
+                    <div class="col-lg-4">
+                        <h3 class="subtitle text-center-mobile">COMO PARTE DE NUESTROS SERVICIOS</h3>
+
+                        <ul class="icon-list">
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Soluciones de hardware y software</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Logística para compras importaciones y nacional</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Servicio de transporte dentro de todo el territorio nacional</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Almacenamiento y resguardo propio</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Centro de control de incidentes y auditorías de satisfacción al cliente</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Técnicos, ingenieros certificados continuamente por las marcas que representamos</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Flota de vehículos propios a nivel nacional debidamente identificados</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Instalación incluyendo anclaje y desanclaje</span>
+                            </li>
+                            <li class="icon-list-item">
+                                <i class="bi bi-check-circle-fill icon-list-icon"></i>
+                                <span class="text-center-mobile">Desincorporación cuidando el medio ambiente</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>

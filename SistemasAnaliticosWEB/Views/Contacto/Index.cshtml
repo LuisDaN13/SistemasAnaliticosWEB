@@ -1,5 +1,700 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctenos - Sistemas Analíticos</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #d90100;
+            --secondary-color: #4e4e4e;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Estilos para el contenido principal */
+        .hero-section {
+            position: relative;
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Pseudo-elemento para el fondo */
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/img/flotilla-SASA.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(0.6);
+            transform: scale(1);
+            transition: transform 5s ease;
+            z-index: -1;
+        }
+
+        .hero-section:hover::before {
+            transform: scale(1.1);
+        }
+
+        /* Hero titles */
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .section-spacer {
+            height: 1rem;
+        }
+
+        .support-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .support-title {
+            font-weight: 400;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+            font-size: 1.5rem;
+        }
+
+        .support-button {
+            background-color: #d90100;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .support-button:hover {
+            background-color: #b80100;
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-section {
+            padding: 4rem 0;
+            background-color: #e9e9e9;
+        }
+
+        .contact-form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.30);
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .form-control, .form-select {
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(217, 1, 0, 0.25);
+        }
+
+        .required-field::after {
+            content: " *";
+            color: var(--primary-color);
+        }
+
+        .submit-button {
+            background-color: #d90100;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #b80100;
+        }
+
+        .submit-button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            display: none;
+            width: 26px;
+            height: 26px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .map-section {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        /* MAPA RESPONSIVE */
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 500px;
+            width: 100%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .contact-info {
+            background-color: #d90100;
+            color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            height: 100%;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        .contact-info-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info-icon {
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        /* Contenedor para el mapa con padding responsive */
+        .map-wrapper {
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        /* Estilos responsivos */
+        @@media (max-width: 1200px) {
+            .map-section {
+                padding: 4rem 3rem;
+            }
+            
+            .map-container {
+                height: 450px;
+            }
+            
+            .contact-info h3 {
+                margin-bottom: 2rem;
+            }
+            
+            .contact-info-item {
+                margin-bottom: 1.25rem;
+            }
+        }
+        
+        @@media (max-width: 992px) {
+            .hero-section {
+                padding: 4rem 0;
+                min-height: 350px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .support-section {
+                padding: 4rem 0;
+            }
+            
+            .contact-section {
+                padding: 3rem 0;
+            }
+            
+            .map-section {
+                padding: 3rem 2rem;
+            }
+            
+            .contact-info {
+                padding: 2.5rem;
+            }
+            
+            .map-container {
+                height: 400px;
+            }
+        }
+        
+        @@media (max-width: 768px) {
+            .hero-section {
+                padding: 3rem 0;
+                min-height: 300px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .support-title {
+                font-size: 1.25rem;
+                margin-bottom: 2rem;
+            }
+            
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+            
+            .form-title {
+                font-size: 1.25rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .contact-info {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .contact-info h3 {
+                margin-bottom: 1.5rem;
+                font-size: 1.25rem;
+            }
+            
+            .contact-info-item {
+                margin-bottom: 1rem;
+            }
+            
+            .map-section {
+                padding: 3rem 1rem;
+            }
+            
+            .map-wrapper {
+                padding: 0 0.5rem;
+            }
+            
+            .map-container {
+                height: 350px;
+            }
+            
+            /* Centrar contenido en móviles */
+            .text-center-mobile {
+                text-align: center !important;
+            }
+            
+            .support-button {
+                display: block;
+                margin: 0 auto;
+                width: fit-content;
+            }
+            
+            /* Ajustar margen inferior para títulos en móvil */
+            .mobile-mb-4 {
+                margin-bottom: 1.5rem !important;
+            }
+        }
+        
+        @@media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.75rem;
+            }
+            
+            .support-section {
+                padding: 3rem 0;
+            }
+            
+            .contact-section {
+                padding: 2.5rem 0;
+            }
+            
+            .contact-form-container {
+                padding: 1.25rem;
+            }
+            
+            .contact-info {
+                padding: 1.25rem;
+            }
+            
+            .map-section {
+                padding: 2.5rem 0.5rem;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .support-title {
+                font-size: 1.1rem;
+            }
+            
+            .contact-info h3 {
+                margin-bottom: 1.25rem;
+                font-size: 1.1rem;
+            }
+            
+            .contact-info-item {
+                margin-bottom: 0.75rem;
+            }
+            
+            .contact-info-icon {
+                font-size: 1rem;
+            }
+            
+            .form-control, .form-select {
+                padding: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .submit-button {
+                padding: 0.5rem 1.5rem;
+            }
+        }
+        
+        @@media (max-width: 400px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            
+            .map-container {
+                height: 250px;
+            }
+            
+            .contact-info h3 {
+                font-size: 1rem;
+            }
+            
+            .contact-info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-info-icon {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <span style="color: #d90100;">Sistemas</span> 
+                <span style="color: #4e4e4e;">Analíticos</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Sección Hero -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h1 class="hero-title">Contáctenos</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Espaciador -->
+        <div class="section-spacer"></div>
+
+        <!-- Sección de Soporte -->
+        <section class="support-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="support-title text-center-mobile mobile-mb-4">
+                            Para soporte de nuestros servicios ESET, Asistencia Remota, Chat de ayuda, WhatsApp y Generar un caso de Soporte
+                        </h2>
+                        <a href="https://helpdesk.esetca.com/es/support/home" class="support-button" target="_blank">
+                            Asistencia
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Espaciador -->
+        <div class="section-spacer"></div>
+
+        <!-- Sección de Contacto y Formulario -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="row align-items-stretch">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="contact-info h-100">
+                            <h3 class="text-center-mobile mobile-mb-4">Información de Contacto</h3>
+
+                            <div class="contact-info-item">
+                                <i class="bi bi-envelope contact-info-icon"></i>
+                                <div>
+                                    <h6 class="mb-2">Correo Electrónico</h6>
+                                    <p class="mb-0">spti@sistemasanaliticos.cr</p>
+                                    <p class="mb-0">soporteeset@sistemasanaliticos.cr</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <i class="bi bi-telephone contact-info-icon"></i>
+                                <div>
+                                    <h6 class="mb-2">Teléfono</h6>
+                                    <p class="mb-0">+506 4080-9300</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <i class="bi bi-geo-alt contact-info-icon"></i>
+                                <div>
+                                    <h6 class="mb-2">Dirección</h6>
+                                    <p class="mb-0">San José, Escazú, San Rafael, Guapellín, Última Park</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <i class="bi bi-clock contact-info-icon"></i>
+                                <div>
+                                    <h6 class="mb-2">Horario de Atención</h6>
+                                    <p class="mb-0">Lunes a Viernes: 8:00 AM - 5:00 PM</p>
+                                    <p class="mb-0">Sábados: 9:00 AM - 12:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-form-container h-100">
+                            <h3 class="form-title text-center-mobile mobile-mb-4">Envíanos un mensaje</h3>
+
+                            <form id="contact-form" asp-action="EnviarCorreo" asp-controller="Contacto" method="post">
+                                @Html.AntiForgeryToken()
+
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label required-field">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa tu nombre.
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label required-field">Correo Electrónico</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="tu@email.com" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa un correo electrónico válido.
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="telefono" class="form-label required-field">Teléfono</label>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Tu número de teléfono" maxlength="8" required>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa tu número de teléfono.
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="mensaje" class="form-label required-field">Mensaje</label>
+                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa tu mensaje.
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid">
+                                    <button type="submit" class="submit-button" id="submit-button">
+                                        <span id="button-text">Enviar</span>
+                                        <img src="https://www.sistemasanaliticos.cr/wp-content/plugins/wpforms-lite/assets/images/submit-spin.svg" 
+                                             class="spinner" 
+                                             id="submit-spinner" 
+                                             alt="Cargando">
+                                    </button>
+                                </div>
+                                
+                                <div class="alert alert-success mt-3 d-none" id="success-message">
+                                    ¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.
+                                </div>
+                                
+                                <div class="alert alert-danger mt-3 d-none" id="error-message">
+                                    Hubo un error al enviar el mensaje. Por favor intenta de nuevo.
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección del Mapa CON PADDING RESPONSIVE -->
+        <section class="map-section">
+            <div class="container-fluid px-0">
+                <div class="row justify-content-center mx-0">
+                    <div class="col-12 px-0">
+                        <h3 class="text-center mb-4 text-center-mobile mobile-mb-4">Nuestra Ubicación</h3>
+                        <div class="map-wrapper">
+                            <div class="map-container">
+                                <iframe 
+                                    src="https://maps.google.com/maps?q=sistemas%20analiticos&#038;t=m&#038;z=10&#038;output=embed&#038;iwloc=near"
+                                    title="Ubicación de Sistemas Analíticos"
+                                    aria-label="Ubicación de Sistemas Analíticos"
+                                    loading="lazy"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Sistemas Analíticos</h5>
+                    <p class="text-muted">Soluciones tecnológicas y servicios de soporte especializado para el sector financiero y empresarial.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-3">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Servicios</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Servicios</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2">Soporte ESET</li>
+                        <li class="mb-2">Asistencia Remota</li>
+                        <li class="mb-2">Soporte Técnico</li>
+                        <li>Soluciones Empresariales</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="text-muted my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-muted mb-0">&copy; 2024 Sistemas Analíticos. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-muted me-3 text-decoration-none">Política de Privacidad</a>
+                    <a href="#" class="text-muted text-decoration-none">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src='~/js/contactojs.js'></script>
+
+    <script>
+                document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form)
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Mensaje enviado",
+                        text: "Tu mensaje ha sido enviado correctamente.",
+                        confirmButtonColor: "#3085d6"
+                    });
+
+                    form.reset();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "Hubo un problema al enviar el mensaje: " + data.error,
+                        confirmButtonColor: "#d33"
+                    });
+                }
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error inesperado",
+                    text: "No se pudo conectar con el servidor.",
+                    confirmButtonColor: "#d33"
+                });
+            });
+        });
+    </script>
+</body>
+</html>

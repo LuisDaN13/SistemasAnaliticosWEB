@@ -1,234 +1,4 @@
-﻿<style>
-    /* Estilos para el contenido principal */
-    .hero-section {
-        position: relative;
-        padding: 5rem 0;
-        text-align: center;
-        color: white;
-        overflow: hidden;
-    }
-
-        /* Pseudo-elemento para el fondo */
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('/img/fondo-taller.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            filter: brightness(0.6);
-            transform: scale(1);
-            transition: transform 5s ease;
-            z-index: -1;
-        }
-
-        .hero-section:hover::before {
-            transform: scale(1.1);
-        }
-
-    /* Hero titles */
-    .hero-title {
-        font-size: 3rem;
-        font-weight: 400;
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 5.5rem;
-        font-weight: 500;
-        margin-bottom: 1.5rem;
-        letter-spacing: 12px;
-    }
-
-    .hero-description {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-
-    /* Botón */
-    .btn-custom {
-        background-color: #4EBBD6;
-        color: white;
-        padding: 0.75rem 2rem;
-        border-radius: 8px;
-        font-weight: 500;
-    }
-
-        .btn-custom:hover {
-            background-color: #5AA7BF;
-        }
-
-    /* Divider */
-    .divider {
-        width: 700px;
-        height: 2px;
-        background-color: #d90100;
-        margin: 0 auto 2rem;
-    }
-
-    .section-title {
-        text-align: center;
-        margin: 4rem 0 4rem;
-        font-weight: 400;
-        color: #4e4e4e;
-        font-size: 40px;
-    }
-
-    .card-image {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-    }
-
-    .card-text {
-        padding: 1.5rem;
-        background-color: #FAFAFA;
-        min-height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: #4e4e4e;
-    }
-
-    /* Enfoque */
-    .focus-section {
-        background-color: #f8f9fa;
-        padding: 4rem 0;
-    }
-
-    .focus-text {
-        font-size: 35px;
-        font-family: 'Forum',display;
-        font-weight: 100;
-        line-height: 43px;
-        letter-spacing: -2px;
-        text-align: center;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 10px 80px 20px 80px;
-        color: #4e4e4e;
-    }
-
-    /* Premio */
-    .award-section {
-        padding: 4rem 0;
-    }
-
-    /* VIDEO */
-    .video-container iframe {
-        width: 100%;
-        max-width: 500px;
-        aspect-ratio: 16/9;
-        border-radius: 12px;
-    }
-
-    /* ---------------------------- */
-    /* 📱 RESPONSIVE BREAKPOINTS    */
-    /* ---------------------------- */
-
-    /* Tablets y pantallas medianas */
-    @@media (max-width: 992px) {
-        .hero-title
-
-    {
-        font-size: 2.3rem;
-    }
-
-    .hero-subtitle {
-        font-size: 4rem;
-        letter-spacing: 6px;
-    }
-
-    .divider {
-        width: 90%;
-    }
-
-    .focus-text {
-        font-size: 28px;
-        padding: 10px 40px;
-    }
-
-    }
-
-    /* Teléfonos grandes */
-    @@media (max-width: 768px) {
-        .hero-section
-
-    {
-        padding: 4rem 0;
-    }
-
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .hero-subtitle {
-        font-size: 3rem;
-        letter-spacing: 4px;
-    }
-
-    .hero-description {
-        font-size: 1rem;
-    }
-
-    .section-title {
-        font-size: 32px;
-    }
-
-    .focus-text {
-        font-size: 24px;
-        padding: 10px 25px;
-    }
-
-    .card-image {
-        height: 220px;
-    }
-
-    }
-
-    /* Teléfonos pequeños */
-    @@media (max-width: 576px) {
-        .hero-title
-
-    {
-        font-size: 1.6rem;
-    }
-
-    .hero-subtitle {
-        font-size: 2.4rem;
-        letter-spacing: 3px;
-    }
-
-    .divider {
-        width: 70%;
-    }
-
-    .section-title {
-        font-size: 28px;
-    }
-
-    .focus-text {
-        font-size: 20px;
-        line-height: 32px;
-        padding: 10px 20px;
-    }
-
-    .card-image {
-        height: 180px;
-    }
-
-    /* Video full-width en móviles */
-    .video-container iframe {
-        max-width: 100%;
-    }
-
-    }
-</style>
+﻿<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 
 <main>
     <!-- Sección Hero -->
@@ -237,7 +7,7 @@
             <h1 class="hero-title">Líder en innovación y</h1>
             <h1 class="hero-subtitle">TECNOLÓGICA</h1>
             <p class="hero-description">Soluciones que transforman y te ayudan a crecer</p>
-            <a class="btn btn-custom" href="https://www.sistemasanaliticos.cr/contacto" target="_blank">Contáctenos</a>
+            <a class="btn btn-custom" asp-controller="Contacto" asp-action="Index" target="_blank">Contáctenos</a>
         </div>
     </section>
 
@@ -250,7 +20,7 @@
             <!-- Tarjeta 1 -->
             <div class="col-md-4 mb-4">
                 <div class="card border-0">
-                    <img src="https://www.sistemasanaliticos.cr/wp-content/uploads/2025/08/pexels-photo-212286-212286.jpg"
+                    <img src='/img/alianzas.jpg'
                          class="card-image"
                          alt="A man stands in front of a wall filled with creative ideas and plans. Ideal for innovation themes.">
                     <div class="card-text">
@@ -274,7 +44,7 @@
             <!-- Tarjeta 3 -->
             <div class="col-md-4 mb-4">
                 <div class="card border-0">
-                    <img src="https://www.sistemasanaliticos.cr/wp-content/uploads/2025/08/ga5214679db1eb12cdb40df0c6441ac6e023cc191088925cb40dc0b600d34aa38f22ac70a6ef2bdd94c07f84881da1854c2c0a92701f4f59bbbf88ab3299edb8a_1280-2606509.jpg"
+                    <img src='/img/soporte.jpg'
                          class="card-image"
                          alt="businessman, consulting, business, meeting, conference, meet, parley, conversation, convention, colloquium, reading, success, team, teamwork, profit, marketing, plan, innovation, sale, goals, strategy, customer, buyer, seller, support, help, performance, options, ideas, can, competence, presentation, businessman, consulting, consulting, consulting, consulting, consulting, meeting, meeting, meeting, meeting, success, team, team, marketing, marketing, marketing, innovation, customer, customer, customer, support, support, help, help, presentation">
                     <div class="card-text">

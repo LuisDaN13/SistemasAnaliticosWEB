@@ -1,0 +1,138 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Estilos personalizados para HEADER MÁS ALTO */
+.navbar {
+    padding-top: 1.5rem; /* Más padding arriba */
+    padding-bottom: 1.5rem; /* Más padding abajo */
+    min-height: 100px; /* Altura mínima del header */
+}
+
+.navbar-brand img {
+    max-height: 80px; /* Logo más grande */
+    width: auto;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.8rem 1.2rem !important; /* Más padding en los enlaces */
+    font-size: 1.1rem; /* Texto más grande */
+}
+
+.nav-link:hover {
+    color: #d90100 !important;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.2rem; /* Ícono hamburguesa más grande */
+}
+
+    .navbar-toggler:focus {
+        box-shadow: none;
+    }
+
+/* Footer styles - MODIFICADO */
+.site-footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.footer-logo img {
+    max-height: 80px;
+    width: auto;
+}
+
+.footer-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer-menu a {
+    text-decoration: none;
+    color: #6c757d;
+    transition: color 0.3s;
+}
+
+    .footer-menu a:hover {
+        color: #0d6efd;
+    }
+
+.footer-copyright {
+    color: #6c757d;
+}
+
+/* NUEVO: Estilos para el layout del footer con elementos a los extremos */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.footer-center {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        padding-top: 1.5rem; /* Más padding en móvil */
+    }
+
+    .footer-menu ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    /* En móvil el header puede ser un poco menos alto */
+    .navbar {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        min-height: 80px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .footer-menu ul {
+        justify-content: center;
+    }
+}
+
+/* Contenido de ejemplo */
+.main-content {
+    min-height: 400px;
+    padding: 2rem 0;
+}

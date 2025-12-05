@@ -9,8 +9,8 @@ builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter(policyName: "default", options =>
     {
-        options.PermitLimit = 20;        // Máximo 20 peticiones
-        options.Window = TimeSpan.FromSeconds(10);  // Cada 10 segundos
+        options.PermitLimit = 20;
+        options.Window = TimeSpan.FromSeconds(10);
         options.QueueLimit = 0;
     });
 });
@@ -21,29 +21,21 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseHsts();
-app.Use(async (context, next) =>
-{
-    context.Response.Headers.Append("Content-Security-Policy",
-        "default-src 'self'; script-src 'self'; style-src 'self';");
-    await next();
-});
-
+// Seguridad adicional
 app.UseXContentTypeOptions();
 app.UseXfo(options => options.Deny());
 app.UseReferrerPolicy(opts => opts.NoReferrer());
-app.UseCsp(opts => opts.DefaultSources(s => s.Self()));
+// app.UseCsp(...); // si quieres agrego CSP
 
-app.UseRateLimiter();
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseRateLimiter();
 
 app.UseAuthorization();
 

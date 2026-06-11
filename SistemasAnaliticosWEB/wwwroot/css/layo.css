@@ -28,6 +28,10 @@ body {
     color: #d90100 !important;
 }
 
+.nav-link.active {
+    color: #d90100 !important;
+}
+
 .navbar-toggler {
     border: none;
     padding: 0.5rem 0.75rem;

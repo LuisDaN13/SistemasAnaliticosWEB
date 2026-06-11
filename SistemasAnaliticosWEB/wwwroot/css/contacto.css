@@ -43,6 +43,22 @@
     height: 1rem;
 }
 
+.spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #ddd;
+    border-top-color: #4EBBD6; /* Cambia el color */
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: none; /* Igual que tu imagen */
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .support-section {
     padding: 5rem 0;
     background-color: #f8f9fa;
@@ -112,7 +128,7 @@
 
 .required-field::after {
     content: " *";
-    color: var(--primary-color);
+    color: #D90100;
 }
 
 .submit-button {

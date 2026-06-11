@@ -1,0 +1,69 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+    Layout = "_Layout";
+
+    // Detectar código de error
+    var statusCode = Context.Response.StatusCode;
+    var errorTitle = statusCode == 404 ? "Página No Encontrada" : "Error Inesperado";
+    var errorMessage = statusCode == 404
+        ? "La página que estás buscando no existe o ha sido movida."
+        : "Ha ocurrido un problema al procesar su solicitud.";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header @(statusCode == 404 ? "bg-warning" : "bg-danger") text-white">
+                    <h3 class="card-title mb-0">
+                        @if (statusCode == 404)
+                        {
+                            <i class="fas fa-map-signs"></i> 
+                            @errorTitle
+                        }
+                        else
+                        {
+                            <i class="fas fa-exclamation-triangle"></i> 
+                            @errorTitle
+                        }
+                    </h3>
+                </div>
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        @if (statusCode == 404)
+                        {
+                            <i class="fas fa-question-circle fa-5x text-warning"></i>
+                        }
+                        else
+                        {
+                            <i class="fas fa-bug fa-5x text-danger"></i>
+                        }
+                    </div>
+
+                    <h4 class="@(statusCode == 404 ? "text-warning" : "text-danger") mb-3">
+                        Código de Error: @statusCode
+                    </h4>
+
+                    <p class="mb-4">@errorMessage</p>
+
+                    @if (Model?.ShowRequestId ?? false)
+                    {
+                        <p class="text-muted">
+                            <strong>ID de Solicitud:</strong> <code>@Model.RequestId</code>
+                        </p>
+                    }
+
+                    <div class="mt-4">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary me-2">
+                            <i class="fas fa-home"></i> Volver al Inicio
+                        </a>
+                        <a href="javascript:history.back()" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

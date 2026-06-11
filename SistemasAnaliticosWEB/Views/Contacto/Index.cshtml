@@ -119,19 +119,8 @@
                             <div class="d-grid">
                                 <button type="submit" class="submit-button" id="submit-button">
                                     <span id="button-text">Enviar</span>
-                                    <img src="https://www.sistemasanaliticos.cr/wp-content/plugins/wpforms-lite/assets/images/submit-spin.svg" 
-                                            class="spinner" 
-                                            id="submit-spinner" 
-                                            alt="Cargando">
+                                    <div class="spinner" id="submit-spinner"></div>
                                 </button>
-                            </div>
-                                
-                            <div class="alert alert-success mt-3 d-none" id="success-message">
-                                ¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.
-                            </div>
-                                
-                            <div class="alert alert-danger mt-3 d-none" id="error-message">
-                                Hubo un error al enviar el mensaje. Por favor intenta de nuevo.
                             </div>
                         </form>
                     </div>
@@ -148,12 +137,11 @@
                     <h3 class="text-center mb-4 text-center-mobile mobile-mb-4">Nuestra Ubicación</h3>
                     <div class="map-wrapper">
                         <div class="map-container">
-                            <iframe 
-                                src="https://maps.google.com/maps?q=sistemas%20analiticos&#038;t=m&#038;z=10&#038;output=embed&#038;iwloc=near"
-                                title="Ubicación de Sistemas Analíticos"
-                                aria-label="Ubicación de Sistemas Analíticos"
-                                loading="lazy"
-                                allowfullscreen>
+                            <iframe src="https://maps.google.com/maps?q=sistemas+analiticos&t=m&z=10&output=embed&iwloc=near"
+                                    title="Ubicación de Sistemas Analíticos"
+                                    aria-label="Ubicación de Sistemas Analíticos"
+                                    loading="lazy"
+                                    allowfullscreen>
                             </iframe>
                         </div>
                     </div>
@@ -162,46 +150,9 @@
         </div>
     </section>
 
-    <script src='~/js/contactojs.js'></script>
 
-    <script>
-        document.getElementById("contact-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const form = e.target;
-
-            fetch(form.action, {
-                method: "POST",
-                body: new FormData(form)
-            })
-            .then(r => r.json())
-            .then(data => {
-                if (data.success) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Mensaje enviado",
-                        text: "Tu mensaje ha sido enviado correctamente.",
-                        confirmButtonColor: "#3085d6"
-                    });
-
-                    form.reset();
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: "Hubo un problema al enviar el mensaje: " + data.error,
-                        confirmButtonColor: "#d33"
-                    });
-                }
-            })
-            .catch(() => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Error inesperado",
-                    text: "No se pudo conectar con el servidor.",
-                    confirmButtonColor: "#d33"
-                });
-            });
-        });
-    </script>
+    @section Scripts {
+        <script src='~/js/contacto.js' asp-append-version="true"></script>
+        <script src="~/js/contacto-form.js" asp-append-version="true"></script>
+    }
 </main>

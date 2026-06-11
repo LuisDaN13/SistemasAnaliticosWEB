@@ -12,5 +12,26 @@ namespace SistemasAnaliticosWEB.Controllers
         {
             return View();
         }
+
+        // En HomeController
+        [Route("Error/404")]
+        public IActionResult Error404()
+        {
+            Response.StatusCode = 404;
+            return View("Error"); // Reutiliza tu vista de error
+        }
+
+        //-------------------------------------------------------------------------------------
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            var errorViewModel = new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(errorViewModel);
+        }
     }
 }
